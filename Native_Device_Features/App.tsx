@@ -52,6 +52,7 @@ export default function App() {
               //   />
               // ),
               //headerLeft: () => <Text>Back</Text>,
+              headerBackTitle: "Back",
             })}
           />
           <Stack.Screen
