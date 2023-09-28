@@ -1,10 +1,18 @@
-import { Text, View } from "react-native";
+import { useState } from "react";
+import { ScrollView, Text, TextInput, View } from "react-native";
 
 function PlaceForm() {
+  const [enteredTitle, setEnteredTitle] = useState("");
+
+  function changeTitleHandler() {}
+
   return (
-    <View>
-      <Text>Text Form</Text>
-    </View>
+    <ScrollView>
+      <View>
+        <Text>Title</Text>
+        <TextInput onChangeText={changeTitleHandler} />
+      </View>
+    </ScrollView>
   );
 }
 
