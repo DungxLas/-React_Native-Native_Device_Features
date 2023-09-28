@@ -24,7 +24,7 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="All Places"
+            name="AllPlaces"
             component={AllPlaces}
             options={({ navigation }) => ({
               title: "Your Favorite Places",
@@ -33,30 +33,21 @@ export default function App() {
                   icon="add"
                   size={24}
                   color={tintColor}
-                  onPress={() => navigation.navigate("Add Place")}
+                  onPress={() => navigation.navigate("AddPlace")}
                 />
               ),
             })}
           />
           <Stack.Screen
-            name="Add Place"
+            name="AddPlace"
             component={AddPlace}
             options={({ navigation }) => ({
               title: "Add a new Place",
-              // headerRight: ({ tintColor }) => (
-              //   <IconButton
-              //     icon="add"
-              //     size={24}
-              //     color={tintColor}
-              //     onPress={() => navigation.navigate("Add Place")}
-              //   />
-              // ),
-              //headerLeft: () => <Text>Back</Text>,
               headerBackTitle: "Back",
             })}
           />
           <Stack.Screen
-            name="Place Detail"
+            name="PlaceDetail"
             component={PlaceDetail}
             options={{ title: "Place Detail" }}
           />
