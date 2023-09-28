@@ -6,33 +6,33 @@ import {
 } from 'expo-image-picker';
 
 function ImagePicker() {
-  const [cameraPermissionInformation, requestPermission] =
-    useCameraPermissions();
+  // const [cameraPermissionInformation, requestPermission] =
+  //   useCameraPermissions();
 
-  async function verifyPermissions() {
-    if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
-      const permissionResponse = await requestPermission();
+  // async function verifyPermissions() {
+  //   if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
+  //     const permissionResponse = await requestPermission();
 
-      return permissionResponse.granted;
-    }
+  //     return permissionResponse.granted;
+  //   }
 
-    if (cameraPermissionInformation.status === PermissionStatus.DENIED) {
-      Alert.alert(
-        'Insufficient Permissions!',
-        'You need to grant camera permissions to use this app.'
-      );
-      return false;
-    }
+  //   if (cameraPermissionInformation.status === PermissionStatus.DENIED) {
+  //     Alert.alert(
+  //       'Insufficient Permissions!',
+  //       'You need to grant camera permissions to use this app.'
+  //     );
+  //     return false;
+  //   }
 
-    return true;    
-  }
+  //   return true;    
+  // }
 
   async function takeImageHandler() {
-    const hasPermission = await verifyPermissions();
+    // const hasPermission = await verifyPermissions();
 
-    if (!hasPermission) {
-      return;
-    }
+    // if (!hasPermission) {
+    //   return;
+    // }
 
     const image = await launchCameraAsync({
       allowsEditing: true,
