@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import AllPlaces from "./screens/AllPlaces";
 import AddPlace from "./screens/AddPlace";
 import PlaceDetail from "./screens/PlaceDetails";
+import Map from "./screens/Map";
 import IconButton from "./components/UI/IconButton";
 import { Colors } from "./constants/color";
 
@@ -51,6 +52,7 @@ export default function App() {
             component={PlaceDetail}
             options={{ title: "Place Detail" }}
           />
+          <Stack.Screen name="Map" component={Map} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
