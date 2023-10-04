@@ -6,7 +6,6 @@ import {
 } from "expo-location";
 import { useEffect, useState } from "react";
 import {
-  RouteProp,
   useIsFocused,
   useNavigation,
   useRoute,
@@ -14,7 +13,7 @@ import {
 
 import OutlineButton from "../UI/OutlineButton";
 import { Colors } from "../../constants/color";
-import { getMapPreview } from "../../util/location";
+import { getAddress, getMapPreview } from "../../util/location";
 
 function LocationPicker({ onPickLocation }) {
   const navigation = useNavigation();
@@ -29,13 +28,23 @@ function LocationPicker({ onPickLocation }) {
         lat: route.params.pickedLat,
         lng: route.params.pickedLng,
       };
-      console.log(route.params);
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
 
   useEffect(() => {
-    onPickLocation(pickedLocation);
+    async function handlerLocation() {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng
+        );
+
+        onPickLocation({...pickedLocation, address: address});
+      }
+    }
+
+    handlerLocation();
   }, [pickedLocation, onPickLocation]);
 
   const [pickedLocation, setPickedLocation] = useState();
