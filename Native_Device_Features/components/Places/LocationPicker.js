@@ -16,15 +16,9 @@ import OutlineButton from "../UI/OutlineButton";
 import { Colors } from "../../constants/color";
 import { getMapPreview } from "../../util/location";
 
-function LocationPicker() {
+function LocationPicker({ onPickLocation }) {
   const navigation = useNavigation();
 
-  // type StackParamsList = {
-  //   Map: {
-  //     pickedLat: number;
-  //     pickedLng: number;
-  //   };
-  // };
   const route = useRoute();
 
   const isFocused = useIsFocused();
@@ -39,6 +33,10 @@ function LocationPicker() {
       setPickedLocation(mapPickedLocation);
     }
   }, [route, isFocused]);
+
+  useEffect(() => {
+    onPickLocation(pickedLocation);
+  }, [pickedLocation, onPickLocation]);
 
   const [pickedLocation, setPickedLocation] = useState();
 
