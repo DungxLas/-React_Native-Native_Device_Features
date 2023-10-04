@@ -4,8 +4,13 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import {
+  RouteProp,
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 
 import OutlineButton from "../UI/OutlineButton";
 import { Colors } from "../../constants/color";
@@ -14,21 +19,42 @@ import { getMapPreview } from "../../util/location";
 function LocationPicker() {
   const navigation = useNavigation();
 
-  const [pickedLocation, setPickedLocation] = useState<any>();
+  // type StackParamsList = {
+  //   Map: {
+  //     pickedLat: number;
+  //     pickedLng: number;
+  //   };
+  // };
+  const route = useRoute();
+
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused && route.params) {
+      const mapPickedLocation = {
+        lat: route.params.pickedLat,
+        lng: route.params.pickedLng,
+      };
+      console.log(route.params);
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [route, isFocused]);
+
+  const [pickedLocation, setPickedLocation] = useState();
 
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
   async function verifyPermissions() {
     if (
-      locationPermissionInformation!.status === PermissionStatus.UNDETERMINED
+      locationPermissionInformation.status === PermissionStatus.UNDETERMINED
     ) {
       const permissionResponse = await requestPermission();
 
       return permissionResponse.granted;
     }
 
-    if (locationPermissionInformation!.status === PermissionStatus.DENIED) {
+    if (locationPermissionInformation.status === PermissionStatus.DENIED) {
       Alert.alert(
         "Insufficient Permissions!",
         "You need to grant location permissions to use this app."
@@ -55,7 +81,7 @@ function LocationPicker() {
   }
 
   function pickOnMapHandler() {
-    navigation.navigate("Map" as never);
+    navigation.navigate("Map");
   }
 
   let locationPreview = <Text>No location picked yet.</Text>;
