@@ -40,7 +40,7 @@ function LocationPicker({ onPickLocation }) {
           pickedLocation.lng
         );
 
-        onPickLocation({ ...{ address: address }, pickedLocation });
+        onPickLocation({ ...pickedLocation, address: address });
       }
     }
 
