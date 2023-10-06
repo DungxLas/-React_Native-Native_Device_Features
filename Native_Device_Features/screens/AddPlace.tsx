@@ -6,9 +6,7 @@ import { insertPlace } from "../util/database";
 function AddPlace({ navigation }: any) {
   async function createPlaceHandler(place: any) {
     await insertPlace(place);
-    navigation.navigate("AllPlaces", {
-      place: place,
-    });
+    navigation.navigate("AllPlaces");
   }
 
   return <PlaceForm onCreatePlace={createPlaceHandler} />;

@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import AppLoading from "expo-app-loading";
+import SplashScreen from 'expo-splash-screen';
 
 import AllPlaces from "./screens/AllPlaces";
 import AddPlace from "./screens/AddPlace";
